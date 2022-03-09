@@ -1,0 +1,13 @@
+resources:
+  - cluster-role-binding.yaml
+  - cluster-role.yaml
+  - daemonset.yaml
+  - service-account.yaml
+
+configMapGenerator:
+  - name: fleet-configmap-1
+    namespace: kube-system
+    literals:
+      - FLEET_ENROLLMENT_TOKEN=""
+      - FLEET_INSECURE=false
+      - FLEET_URL=https://fleet-server:8220

@@ -1,0 +1,4 @@
+resources:
+  - elastic-agent/
+  - kube-state-metrics/
+  - kubernetes-dashboard/

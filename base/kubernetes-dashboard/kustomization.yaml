@@ -1,0 +1,4 @@
+resources:
+  - dashboard.admin-user-role.yml
+  - dashboard.admin-user.yml
+  - dashboard.yaml
