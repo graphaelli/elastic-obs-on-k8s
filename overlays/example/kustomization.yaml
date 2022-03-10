@@ -1,5 +1,6 @@
 resources:
 - ../../base
+- ../../extras
 
 images:
   - name: docker.elastic.co/beats/elastic-agent

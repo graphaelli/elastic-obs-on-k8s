@@ -23,6 +23,9 @@ spec:
       containers:
         - name: elastic-agent
           image: docker.elastic.co/beats/elastic-agent:8.1.0
+          ports:
+            - containerPort: 8200
+              hostPort: 8200
           env:
             - name: FLEET_ENROLL
               value: "1"
