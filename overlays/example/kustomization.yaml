@@ -15,3 +15,70 @@ configMapGenerator:
     literals:
       - FLEET_INSECURE=true
     behavior: merge
+
+patches:
+  - patch: |
+      - op: add
+        path: "/spec/jobTemplate/spec/template/spec/containers/0/env/-"
+        value:
+          name: KUBERNETES_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+      - op: add
+        path: "/spec/jobTemplate/spec/template/spec/containers/0/env/-"
+        value:
+          name: KUBERNETES_NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+      - op: add
+        path: "/spec/jobTemplate/spec/template/spec/containers/0/env/-"
+        value:
+          name: KUBERNETES_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+      - op: add
+        path: "/spec/jobTemplate/spec/template/spec/containers/0/env/-"
+        value:
+          name: KUBERNETES_POD_UID
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.uid
+    target:
+      kind: CronJob
+      version: v1
+
+  - patch: |
+      - op: add
+        path: "/spec/template/spec/containers/0/env/-"
+        value:
+          name: KUBERNETES_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+      - op: add
+        path: "/spec/template/spec/containers/0/env/-"
+        value:
+          name: KUBERNETES_NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+      - op: add
+        path: "/spec/template/spec/containers/0/env/-"
+        value:
+          name: KUBERNETES_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+      - op: add
+        path: "/spec/template/spec/containers/0/env/-"
+        value:
+          name: KUBERNETES_POD_UID
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.uid
+    target:
+      kind: Deployment
+      version: v1
