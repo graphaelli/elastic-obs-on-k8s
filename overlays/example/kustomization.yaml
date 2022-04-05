@@ -46,6 +46,18 @@ patches:
           valueFrom:
             fieldRef:
               fieldPath: metadata.uid
+      - op: add
+        path: "/spec/jobTemplate/spec/template/spec/containers/0/env/-"
+        value:
+          name: HOST_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+      - op: add
+        path: "/spec/jobTemplate/spec/template/spec/containers/0/env/-"
+        value:
+          name: ELASTIC_APM_SERVER_URL
+          value: "http://$(HOST_IP):8200"
     target:
       kind: CronJob
       version: v1
@@ -79,6 +91,18 @@ patches:
           valueFrom:
             fieldRef:
               fieldPath: metadata.uid
+      - op: add
+        path: "/spec/template/spec/containers/0/env/-"
+        value:
+          name: HOST_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+      - op: add
+        path: "/spec/template/spec/containers/0/env/-"
+        value:
+          name: ELASTIC_APM_SERVER_URL
+          value: "http://$(HOST_IP):8200"
     target:
       kind: Deployment
       version: v1

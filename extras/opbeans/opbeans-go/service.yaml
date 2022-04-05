@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: opbeans-go
+  namespace: opbeans
+spec:
+  selector:
+    app: opbeans-go
+  ports:
+    - port: 8000

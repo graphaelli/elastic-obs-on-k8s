@@ -1,0 +1,6 @@
+namespace: opbeans
+resources:
+  - namespace.yaml
+  - postgres
+  - redis
+  - opbeans-go

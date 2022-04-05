@@ -1,2 +1,3 @@
 resources:
-  - curltrace/
+  - curltrace
+  - opbeans

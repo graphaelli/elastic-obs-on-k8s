@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opbeans-go
+  namespace: opbeans
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: opbeans-go
+  template:
+    metadata:
+      labels:
+        app: opbeans-go
+    spec:
+      containers:
+        - name: opbeans-go
+          command:
+          - "/opbeans-go"
+          - "-log-level=debug"
+          - "-log-json"
+          - "-listen=:8000"
+          - "-frontend=/opbeans-frontend"
+          - "-db=postgres:"
+          - "-cache=redis://redis.opbeans.svc.cluster.local:6379"
+          image: opbeans/opbeans-go
+          imagePullPolicy: 'IfNotPresent'
+          ports:
+            - containerPort: 8000
+          env:
+            - name: ELASTIC_APM_SERVICE_NAME
+              value: opbeans-go
+            - name: OPBEANS_CACHE
+              value: "redis://redis.opbeans.svc.cluster.local:6379"
+            - name: PGHOST
+              value: "postgres.opbeans.svc.cluster.local"
+            - name: PGPORT
+              value: "5432"
+            - name: PGUSER
+              value: "postgres"
+            - name: PGPASSWORD
+              value: "verysecure"
+            - name: PGSSLMODE
+              value: "disable"

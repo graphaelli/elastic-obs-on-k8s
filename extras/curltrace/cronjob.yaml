@@ -13,11 +13,5 @@ spec:
               image: graph/curltrace
               imagePullPolicy: IfNotPresent
               command: ["curltrace", "http://elastic.co"]
-              env:
-                - name: HOST_IP
-                  valueFrom:
-                    fieldRef:
-                      fieldPath: status.hostIP
-                - name: ELASTIC_APM_SERVER_URL
-                  value: "http://$(HOST_IP):8200"
+              env: []
           restartPolicy: OnFailure
